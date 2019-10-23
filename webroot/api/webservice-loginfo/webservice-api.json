@@ -1,0 +1,1731 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Loginfo Webservice - API",
+    "description": "Integração entre sistemas",
+    "version": "1.0.0",
+    "contact": {
+      "email": "elton@loginfo.com.br"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "agendamento.loginfo.com.br:9292", 
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/agendamentos/index.json": {
+      "post": {
+        "summary": "Lista Agendamentos",
+        "description": "Lista todos os agendamentos\n",
+        "tags": [
+          "agendamentos"
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra a lista de agendamentos em formato json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/agendamentos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agendamentos/view/{id}.json": {
+      "get": {
+        "summary": "Edita Agendamento",
+        "description": "Edita o agendamento escolhido\n",
+        "tags": [
+          "agendamentos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "passa o id do agendamento por parametro",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra o agendamento escolhido pelo id passado por parametro",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/agendamentos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lotes/index.json": {
+      "post": {
+        "summary": "Lista os Processos",
+        "description": "Lista todos os processos\n",
+        "tags": [
+          "processos"
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra a lista de processos em formato json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/processos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lotes/view/{id}.json": {
+      "get": {
+        "summary": "Edita Processos",
+        "description": "Edita o processo escolhido\n",
+        "tags": [
+          "processos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "passa o id do processo por parametro",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra o processo escolhido pelo id passado por parametro",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/processos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lotes/detalhe/{lote_id}.json": {
+      "get": {
+        "summary": "Edita detalhe Lote",
+        "description": "Edita o detalhe do lote escolhido\n",
+        "tags": [
+          "lote_detalhe"
+        ],
+        "parameters": [
+          {
+            "name": "lote_id",
+            "in": "path",
+            "description": "passa o id do lote por parametro",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra o lote-detalhe pelo id passado por parametro",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/lote_detalhe"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entradas/index.json": {
+      "post": {
+        "summary": "Lista Documentos de Entrada",
+        "description": "Lista todos os documentos de entrada\n",
+        "tags": [
+          "entradas"
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra a lista de documentos de entrada formato json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/entrada"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entradas/view/{id}.json": {
+      "get": {
+        "summary": "Edita Documentos de Entrada",
+        "description": "Edita o documento de entrada escolhido\n",
+        "tags": [
+          "entradas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "passa o id do documento de entrada por parametro",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra o documento de entrada pelo id passado por parametro",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/entrada"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mapas/index/{necessita_vistoria}.json": {
+      "get": {
+        "summary": "Lista as informações contidas no mapa",
+        "description": "Lista Mapas -\n* o correto seria esse curl\n  curl -X GET \"http://agendamento.loginfo.com.br:7272/mapas/index/3.json\" -H \"accept: application/json\"\n- ou esse request\n  http://agendamento.loginfo.com.br:7272/mapas/index/3.json\n",
+        "tags": [
+          "mapas"
+        ],
+        "parameters": [
+          {
+            "name": "necessita_vistoria",
+            "in": "path",
+            "description": "passa o id referente a escolhe do menu",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "900": {
+            "description": "mostra a lista de mapas no formato json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/mapa"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "agendamentos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "10149"
+        },
+        "titulo": {
+          "type": "string",
+          "description": "Carga Geral"
+        },
+        "descricao": {
+          "type": "string",
+          "description": ""
+        },
+        "data": {
+          "type": "string",
+          "description": "2018-03-02T00:00:00-0300"
+        },
+        "CPF_Motorista": {
+          "type": "integer",
+          "description": "38143186920"
+        },
+        "nome_motorista": {
+          "type": "string",
+          "description": "MARIO SANTOS"
+        },
+        "transportadora": {
+          "type": "string",
+          "description": "EGA ASSESSORIA EM COMERCIO EXTERIOR LTDA"
+        },
+        "CNPJ_transportadora": {
+          "type": "integer",
+          "description": "01701615000370"
+        },
+        "CNPJ_cliente": {
+          "type": "string",
+          "description": "null"
+        },
+        "veiculo": {
+          "type": "string",
+          "description": "IHJ5654"
+        },
+        "reboque1": {
+          "type": "string",
+          "description": "LZD5634"
+        },
+        "reboque2": {
+          "type": "string",
+          "description": "null"
+        },
+        "created_by": {
+          "type": "integer",
+          "description": "206"
+        },
+        "created": {
+          "type": "string",
+          "description": "2018-03-02T14:31:08-0300"
+        },
+        "entrada_id": {
+          "type": "string",
+          "description": "null"
+        },
+        "hora": {
+          "type": "string",
+          "description": "15:30"
+        },
+        "operacao_id": {
+          "type": "integer",
+          "description": "1"
+        },
+        "status": {
+          "type": "string",
+          "description": "0"
+        },
+        "programacao_codigo_sara": {
+          "type": "string",
+          "description": "null"
+        },
+        "cesv_codigo_sara": {
+          "type": "string",
+          "description": "null"
+        },
+        "comentario": {
+          "type": "string",
+          "description": "null"
+        },
+        "transito_iniciado": {
+          "type": "string",
+          "description": "1"
+        },
+        "data_inicio": {
+          "type": "string",
+          "description": "2018-03-02T14:24:00-0300"
+        },
+        "data_solicitacao": {
+          "type": "string",
+          "description": "2018-03-02T14:23:16-0300"
+        },
+        "data_chegou": {
+          "type": "string",
+          "description": "null"
+        },
+        "data_liberado": {
+          "type": "string",
+          "description": "null"
+        },
+        "data_entrada_cesv": {
+          "type": "string",
+          "description": "null"
+        },
+        "data_conclusao_os": {
+          "type": "string",
+          "description": "null"
+        },
+        "data_saida_cesv": {
+          "type": "string",
+          "description": "null"
+        },
+        "modified": {
+          "type": "string",
+          "description": "2018-03-02T14:31:08-0300"
+        },
+        "modified_by": {
+          "type": "string",
+          "description": "206"
+        },
+        "situacao_agendamento_id": {
+          "type": "integer",
+          "description": "41"
+        },
+        "slot_id": {
+          "type": "string",
+          "description": "null"
+        },
+        "horario_id": {
+          "type": "integer",
+          "description": "9"
+        },
+        "horario_liberado_id": {
+          "type": "integer",
+          "description": "0"
+        },
+        "acessado_por": {
+          "type": "string",
+          "description": "null"
+        },
+        "situacao_agendamento": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "41"
+            },
+            "nome": {
+              "type": "string",
+              "description": "emTransitoConfirmado"
+            },
+            "descricao": {
+              "type": "string",
+              "description": "Confirmado"
+            },
+            "icone": {
+              "type": "string",
+              "description": "null"
+            },
+            "color": {
+              "type": "string",
+              "description": "null"
+            },
+            "situacao_futura": {
+              "type": "string",
+              "description": "Aguardando chegada (Confirmado)"
+            },
+            "ativo": {
+              "type": "string",
+              "description": "1"
+            }
+          }
+        },
+        "entrada": {
+          "type": "string",
+          "description": "null"
+        },
+        "operacao": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "1"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Carga Geral"
+            },
+            "cor": {
+              "type": "string",
+              "description": "blue"
+            },
+            "icone": {
+              "type": "string",
+              "description": "glyphicon glyphicon-log-in"
+            },
+            "operacao_documento_id": {
+              "type": "integer",
+              "description": "2"
+            },
+            "ordem": {
+              "type": "integer",
+              "description": "3"
+            },
+            "codigo_sara": {
+              "type": "string",
+              "description": "S"
+            },
+            "codigo_operacao": {
+              "type": "string",
+              "description": "004"
+            },
+            "codigo_sara_sub": {
+              "type": "string",
+              "description": "1"
+            },
+            "aprovacao_automatico": {
+              "type": "string",
+              "description": "0"
+            },
+            "inicio_transito_automatico": {
+              "type": "string",
+              "description": "1"
+            },
+            "liberacao_automatica": {
+              "type": "string",
+              "description": "1"
+            }
+          }
+        },
+        "usuario": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "206"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Lucas Chegatti"
+            },
+            "email": {
+              "type": "string",
+              "description": "lucas@loginfo.com.br"
+            },
+            "senha": {
+              "type": "string",
+              "description": ""
+            },
+            "ativo": {
+              "type": "string",
+              "description": "1"
+            },
+            "cpf": {
+              "type": "string",
+              "description": ""
+            },
+            "perfil_id": {
+              "type": "string",
+              "description": "1"
+            },
+            "created_by": {
+              "type": "string",
+              "description": "4"
+            }
+          }
+        }
+      }
+    },
+    "processos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "4132"
+        },
+        "tipo_natureza_id": {
+          "type": "integer",
+          "description": "2"
+        },
+        "tipo_conhecimento_id": {
+          "type": "integer",
+          "description": "1"
+        },
+        "conhecimento": {
+          "type": "string",
+          "description": "1234567891234"
+        },
+        "data_conhecimento": {
+          "type": "string",
+          "description": "2018-04-05T00:00:00-0300"
+        },
+        "ce_mercante": {
+          "type": "string",
+          "description": "181805050178598"
+        },
+        "referencia_cliente": {
+          "type": "string",
+          "description": "null"
+        },
+        "moeda_id": {
+          "type": "integer",
+          "description": "3"
+        },
+        "valor_cif": {
+          "type": "string",
+          "description": "36.890,00"
+        },
+        "valor_fob": {
+          "type": "string",
+          "description": "18680"
+        },
+        "valor_frete": {
+          "type": "string",
+          "description": "18000"
+        },
+        "valor_seguro": {
+          "type": "string",
+          "description": "210"
+        },
+        "peso_liquido": {
+          "type": "string",
+          "description": "50"
+        },
+        "peso_bruto": {
+          "type": "string",
+          "description": "50"
+        },
+        "quantidade": {
+          "type": "string",
+          "description": "20"
+        },
+        "familia_codigo": {
+          "type": "string",
+          "description": "null"
+        },
+        "pais_id": {
+          "type": "integer",
+          "description": "1"
+        },
+        "cnpj_representante": {
+          "type": "string",
+          "description": "06086293000239"
+        },
+        "cnpj_despachante": {
+          "type": "string",
+          "description": "06086293000239"
+        },
+        "cnpj_destinatario": {
+          "type": "string",
+          "description": "null"
+        },
+        "codigo_viagem_sara": {
+          "type": "string",
+          "description": "1134"
+        },
+        "nome_viagem_sara": {
+          "type": "string",
+          "description": "NAVIO: MOL ABIDJAN (EX:MSC ABIDJAN) | VIAGEM: 812B | PORTO DE ATRACAÇÃO: PORTONAVE S.A | DEADLINE: 28/03/2018 18:00"
+        },
+        "bloqueado_viagem": {
+          "type": "string",
+          "description": "0"
+        },
+        "procedencia_id": {
+          "type": "integer",
+          "description": "24"
+        },
+        "cnpj_cliente": {
+          "type": "string",
+          "description": "62848577000105"
+        },
+        "cfop": {
+          "type": "string",
+          "description": "null"
+        },
+        "serie": {
+          "type": "string",
+          "description": ""
+        },
+        "mbl": {
+          "type": "string",
+          "description": ""
+        },
+        "cemaster": {
+          "type": "string",
+          "description": ""
+        },
+        "recinto_id": {
+          "type": "integer",
+          "description": "2"
+        },
+        "lcl": {
+          "type": "string",
+          "description": "0"
+        },
+        "gerado_lote": {
+          "type": "string",
+          "description": "null"
+        },
+        "sincronizado_em": {
+          "type": "string",
+          "description": "2018-04-05T10:27:52-0300"
+        },
+        "cnpj_agente_master": {
+          "type": "string",
+          "description": "null"
+        },
+        "enviado_email_concluido": {
+          "type": "string",
+          "description": "0"
+        },
+        "anexo_valido": {
+          "type": "string",
+          "description": "1"
+        },
+        "comentario_anexo": {
+          "type": "string",
+          "description": ""
+        },
+        "cnpj_parceiro": {
+          "type": "string",
+          "description": "null"
+        },
+        "nome_parceiro": {
+          "type": "string",
+          "description": "null"
+        },
+        "oculto": {
+          "type": "string",
+          "description": "0"
+        },
+        "empresa_parceira_comercial_id": {
+          "type": "integer",
+          "description": "1067"
+        },
+        "cnpjadquirente": {
+          "type": "string",
+          "description": "08637580000134"
+        },
+        "nome_adquirente": {
+          "type": "string",
+          "description": "TDM - TECNOLOGIA DE MATERIAIS BRASIL LTDA"
+        },
+        "fatura_adquirente": {
+          "type": "string",
+          "description": "false"
+        },
+        "ref_cliente": {
+          "type": "string",
+          "description": "225588"
+        },
+        "faturamento_moeda_id": {
+          "type": "integer",
+          "description": "null"
+        },
+        "faturamento_cotacao": {
+          "type": "string",
+          "description": "null"
+        },
+        "faturamento_valor_cif": {
+          "type": "string",
+          "description": "null"
+        },
+        "faturamento_usuario_id": {
+          "type": "integer",
+          "description": "null"
+        },
+        "faturamento_data": {
+          "type": "string",
+          "description": "null"
+        },
+        "editor": {
+          "type": "string",
+          "description": "null"
+        },
+        "modified": {
+          "type": "string",
+          "description": "2018-04-05T10:35:23-0300"
+        },
+        "acessado_por": {
+          "type": "string",
+          "description": "220"
+        },
+        "entradas": {
+          "type": "object",
+          "properties": {}
+        },
+        "moeda": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "3"
+            },
+            "codigo_sara": {
+              "type": "string",
+              "description": "220"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Dolar"
+            }
+          }
+        },
+        "tipo_conhecimento": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "1"
+            },
+            "nome": {
+              "type": "string",
+              "description": "BL"
+            },
+            "codigo": {
+              "type": "string",
+              "description": "10"
+            }
+          }
+        },
+        "containers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/containers"
+          }
+        },
+        "carga_gerais": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "tipo_natureza": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "2"
+            },
+            "codigo": {
+              "type": "string",
+              "description": "002"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Container"
+            }
+          }
+        },
+        "anexos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/anexos"
+          }
+        },
+        "recinto": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "2"
+            },
+            "codigo_sara": {
+              "type": "string",
+              "description": "2"
+            },
+            "nome": {
+              "type": "string",
+              "description": "PORTONAVE S.A"
+            }
+          }
+        },
+        "pais": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "1"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Brasil"
+            },
+            "codigo": {
+              "type": "string",
+              "description": "BR"
+            }
+          }
+        },
+        "itens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/itens"
+          }
+        }
+      }
+    },
+    "lote_detalhe": {
+      "type": "object",
+      "properties": {
+        "container": {
+          "type": "string",
+          "description": "----"
+        },
+        "cnt_tipo": {
+          "type": "integer",
+          "description": ""
+        },
+        "tiso_id": {
+          "type": "integer",
+          "description": ""
+        },
+        "volumes": {
+          "type": "string",
+          "description": "30.0000000"
+        },
+        "especie": {
+          "type": "string",
+          "description": "CP-CAIXA PAPELAO"
+        },
+        "produto": {
+          "type": "string",
+          "description": ""
+        },
+        "peso_bruto": {
+          "type": "string",
+          "description": "288.9200000"
+        },
+        "peso_liquido": {
+          "type": "string",
+          "description": "256.1550000"
+        },
+        "tipo_documento": {
+          "type": "string",
+          "description": "NF"
+        },
+        "numero_documento": {
+          "type": "string",
+          "description": "18/1187338"
+        },
+        "cesv_id": {
+          "type": "string",
+          "description": "2018V0002998"
+        },
+        "lote_id": {
+          "type": "integer",
+          "description": "201800001149"
+        },
+        "conhecimento": {
+          "type": "string",
+          "description": "001187338-001648"
+        },
+        "conhec_nome": {
+          "type": "string",
+          "description": "NF"
+        },
+        "cliente": {
+          "type": "string",
+          "description": "KYLY INDUSTRIA TEXTIL LTDA"
+        },
+        "situacao": {
+          "type": "string",
+          "description": "Aberto"
+        },
+        "cif_dolar": {
+          "type": "string",
+          "description": "9857.2279"
+        },
+        "reg_nome": {
+          "type": "string",
+          "description": "COMUM EXPORTACAO"
+        },
+        "emissao": {
+          "type": "string",
+          "description": "07/03/2018"
+        },
+        "vencimento": {
+          "type": "string",
+          "description": "07/05/2018"
+        },
+        "lote_manifesto": {
+          "type": "string",
+          "description": ""
+        },
+        "cli_cgc": {
+          "type": "string",
+          "description": "78855830000198"
+        },
+        "pais_nome": {
+          "type": "string",
+          "description": "BRASIL"
+        }
+      }
+    },
+    "entrada": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "42"
+        },
+        "numero_documento": {
+          "type": "string",
+          "description": "17/3161960-1"
+        },
+        "data_emissao": {
+          "type": "string",
+          "description": "2016-10-10T00:00:00-0300"
+        },
+        "status": {
+          "type": "string",
+          "description": "10"
+        },
+        "observacoes": {
+          "type": "string",
+          "description": ""
+        },
+        "empresa_id": {
+          "type": "integer",
+          "description": "416"
+        },
+        "documento_id": {
+          "type": "integer",
+          "description": "1"
+        },
+        "codigo_dent_id": {
+          "type": "string",
+          "description": "null"
+        },
+        "CNPJ_transportadora": {
+          "type": "string",
+          "description": "01701615000370"
+        },
+        "transportadora": {
+          "type": "string",
+          "description": "EGA ASSESSORIA EM COMERCIO EXTERIOR LTDA"
+        },
+        "empresa_parceira_comercial_id": {
+          "type": "string",
+          "description": "null"
+        },
+        "oculto": {
+          "type": "string",
+          "description": "0"
+        },
+        "controlado": {
+          "type": "string",
+          "description": "null"
+        },
+        "scanner_container": {
+          "type": "string",
+          "description": "Sim"
+        },
+        "Containers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Containers"
+          }
+        },
+        "Lotes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "empresa_parceira_comercial": {
+          "type": "string",
+          "description": "null"
+        },
+        "documento": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "1"
+            },
+            "nome": {
+              "type": "string",
+              "description": "DTA"
+            }
+          }
+        }
+      }
+    },
+    "Containers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "29"
+        },
+        "container": {
+          "type": "string",
+          "description": "BSIU970299-9"
+        },
+        "peso_tara": {
+          "type": "string",
+          "description": "3770"
+        },
+        "free_time_dias": {
+          "type": "string",
+          "description": "30"
+        },
+        "lacre": {
+          "type": "string",
+          "description": "ZGLD286139"
+        },
+        "lote_id": {
+          "type": "integer",
+          "description": "41"
+        },
+        "iso_code_id": {
+          "type": "integer",
+          "description": "8"
+        },
+        "armador": {
+          "type": "string",
+          "description": "null"
+        },
+        "possui_madeira": {
+          "type": "string",
+          "description": ""
+        },
+        "lote": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "41"
+            },
+            "tipo_natureza_id": {
+              "type": "integer",
+              "description": "2"
+            },
+            "tipo_conhecimento_id": {
+              "type": "integer",
+              "description": "3"
+            },
+            "conhecimento": {
+              "type": "string",
+              "description": "NBONVG16080600"
+            },
+            "data_conhecimento": {
+              "type": "string",
+              "description": "2016-08-15T00:00:00-0300"
+            },
+            "ce_mercante": {
+              "type": "string",
+              "description": "181605605178195725"
+            },
+            "referencia_cliente": {
+              "type": "string",
+              "description": "null"
+            },
+            "moeda_id": {
+              "type": "integer",
+              "description": "3"
+            },
+            "valor_cif": {
+              "type": "string",
+              "description": "27.677,44"
+            },
+            "valor_fob": {
+              "type": "string",
+              "description": "26.992,44"
+            },
+            "valor_frete": {
+              "type": "string",
+              "description": "685,00"
+            },
+            "valor_seguro": {
+              "type": "string",
+              "description": "0,00"
+            },
+            "peso_liquido": {
+              "type": "string",
+              "description": "null"
+            },
+            "peso_bruto": {
+              "type": "string",
+              "description": "null"
+            },
+            "quantidade": {
+              "type": "string",
+              "description": "null"
+            },
+            "familia_codigo": {
+              "type": "string",
+              "description": "0002005"
+            },
+            "pais_id": {
+              "type": "integer",
+              "description": "45"
+            },
+            "cnpj_representante": {
+              "type": "string",
+              "description": "02378779002233"
+            },
+            "cnpj_despachante": {
+              "type": "string",
+              "description": "07328273000109"
+            },
+            "cnpj_destinatario": {
+              "type": "string",
+              "description": "null"
+            },
+            "codigo_viagem_sara": {
+              "type": "string",
+              "description": "52"
+            },
+            "nome_viagem_sara": {
+              "type": "string",
+              "description": "null"
+            },
+            "bloqueado_viagem": {
+              "type": "string",
+              "description": "0"
+            },
+            "procedencia_id": {
+              "type": "integer",
+              "description": "24"
+            },
+            "cnpj_cliente": {
+              "type": "string",
+              "description": "08055502000121"
+            },
+            "cfop": {
+              "type": "string",
+              "description": "null"
+            },
+            "serie": {
+              "type": "string",
+              "description": ""
+            },
+            "mbl": {
+              "type": "string",
+              "description": "ZIMUNGB9178108"
+            },
+            "cemaster": {
+              "type": "string",
+              "description": "181605165777100"
+            },
+            "recinto_id": {
+              "type": "integer",
+              "description": "2"
+            },
+            "lcl": {
+              "type": "string",
+              "description": "0"
+            },
+            "gerado_lote": {
+              "type": "string",
+              "description": "1"
+            },
+            "sincronizado_em": {
+              "type": "string",
+              "description": "2017-11-09T09:48:13-0200"
+            },
+            "cnpj_agente_master": {
+              "type": "string",
+              "description": "null"
+            },
+            "enviado_email_concluido": {
+              "type": "string",
+              "description": "1"
+            },
+            "anexo_valido": {
+              "type": "string",
+              "description": "0"
+            },
+            "comentario_anexo": {
+              "type": "string",
+              "description": "null"
+            },
+            "cnpj_parceiro": {
+              "type": "string",
+              "description": "null"
+            },
+            "nome_parceiro": {
+              "type": "string",
+              "description": "null"
+            },
+            "oculto": {
+              "type": "string",
+              "description": "0"
+            },
+            "empresa_parceira_comercial_id": {
+              "type": "string",
+              "description": "null"
+            },
+            "cnpjadquirente": {
+              "type": "string",
+              "description": "null"
+            },
+            "nome_adquirente": {
+              "type": "string",
+              "description": "null"
+            },
+            "fatura_adquirente": {
+              "type": "string",
+              "description": "null"
+            },
+            "ref_cliente": {
+              "type": "string",
+              "description": "null"
+            },
+            "faturamento_moeda_id": {
+              "type": "string",
+              "description": "null"
+            },
+            "faturamento_cotacao": {
+              "type": "string",
+              "description": "null"
+            },
+            "faturamento_valor_cif": {
+              "type": "string",
+              "description": "null"
+            },
+            "faturamento_usuario_id": {
+              "type": "string",
+              "description": "null"
+            },
+            "faturamento_data": {
+              "type": "string",
+              "description": "null"
+            },
+            "editor": {
+              "type": "string",
+              "description": "null"
+            },
+            "modified": {
+              "type": "string",
+              "description": "null"
+            },
+            "acessado_por": {
+              "type": "string",
+              "description": "null"
+            },
+            "tipo_conhecimento": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "3"
+                },
+                "nome": {
+                  "type": "string",
+                  "description": "HBL"
+                },
+                "codigo": {
+                  "type": "string",
+                  "description": "9"
+                }
+              }
+            }
+          }
+        },
+        "_joinData": {
+          "type": "object",
+          "properties": {
+            "container_id": {
+              "type": "integer",
+              "description": "29"
+            },
+            "id": {
+              "type": "integer",
+              "description": "449"
+            },
+            "entrada_id": {
+              "type": "integer",
+              "description": "42"
+            }
+          }
+        }
+      }
+    },
+    "containers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "5483"
+        },
+        "container": {
+          "type": "string",
+          "description": "AMCU929830-5"
+        },
+        "peso_tara": {
+          "type": "string",
+          "description": "null"
+        },
+        "free_time_dias": {
+          "type": "string",
+          "description": "6"
+        },
+        "lacre": {
+          "type": "string",
+          "description": ""
+        },
+        "lote_id": {
+          "type": "integer",
+          "description": "4132"
+        },
+        "iso_code_id": {
+          "type": "integer",
+          "description": "11"
+        },
+        "armador": {
+          "type": "string",
+          "description": "000176"
+        },
+        "possui_madeira": {
+          "type": "string",
+          "description": ""
+        },
+        "entradas": {
+          "type": "object",
+          "properties": {}
+        },
+        "iso_code": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "11"
+            },
+            "valor": {
+              "type": "string",
+              "description": "HIGH CUBE REFRIG. SELF POWER,40\\u0027\\/9\\u00276"
+            },
+            "iso_code": {
+              "type": "string",
+              "description": "45R1"
+            },
+            "m3": {
+              "type": "string",
+              "description": "67.3"
+            },
+            "m2": {
+              "type": "string",
+              "description": "26.28"
+            },
+            "comprimento": {
+              "type": "string",
+              "description": "12.192"
+            },
+            "largura": {
+              "type": "string",
+              "description": "2.438"
+            },
+            "altura": {
+              "type": "string",
+              "description": "2.59"
+            },
+            "tamanho": {
+              "type": "string",
+              "description": "40"
+            }
+          }
+        }
+      }
+    },
+    "anexos": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "13210"
+        },
+        "nome": {
+          "type": "string",
+          "description": "232478SZ.jpg"
+        },
+        "arquivo": {
+          "type": "string",
+          "description": "029755be1c4ec3bdf5caee60b3ac6d8d6bf8fe5d.jpg"
+        },
+        "tipo": {
+          "type": "string",
+          "description": "MBL"
+        },
+        "lote_id": {
+          "type": "integer",
+          "description": "4132"
+        },
+        "lote_sara": {
+          "type": "string",
+          "description": "null"
+        },
+        "tipo_servico_id": {
+          "type": "integer",
+          "description": "null"
+        },
+        "reprovado": {
+          "type": "string",
+          "description": "0"
+        },
+        "lote_solicitacao_id": {
+          "type": "integer",
+          "description": "null"
+        },
+        "documento_saida_id": {
+          "type": "integer",
+          "description": "null"
+        }
+      }
+    },
+    "itens": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "5709"
+        },
+        "codigo_sara": {
+          "type": "string",
+          "description": "null"
+        },
+        "ncm": {
+          "type": "string",
+          "description": "BITR.01.CH"
+        },
+        "ncm_descricao": {
+          "type": "string",
+          "description": ""
+        },
+        "descricao": {
+          "type": "string",
+          "description": "BITREM CHEIO, QUALQUER COMPRIMENTO"
+        },
+        "codigo": {
+          "type": "string",
+          "description": "null"
+        },
+        "codigo_referencia": {
+          "type": "string",
+          "description": "null"
+        },
+        "descricao_produto": {
+          "type": "string",
+          "description": ""
+        },
+        "peso_liquido": {
+          "type": "string",
+          "description": "50"
+        },
+        "peso_bruto": {
+          "type": "string",
+          "description": "50"
+        },
+        "quantidade": {
+          "type": "string",
+          "description": "20"
+        },
+        "embalagem_id": {
+          "type": "integer",
+          "description": "81"
+        },
+        "codigo_onu_id": {
+          "type": "integer",
+          "description": "10"
+        },
+        "container_id": {
+          "type": "integer",
+          "description": "5483"
+        },
+        "lote_id": {
+          "type": "integer",
+          "description": "4132"
+        },
+        "anvisa": {
+          "type": "string",
+          "description": "Não"
+        },
+        "controlado": {
+          "type": "string",
+          "description": "Não"
+        }
+      }
+    },
+    "mapa": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "57740"
+        },
+        "lote": {
+          "type": "string",
+          "description": "201800001587"
+        },
+        "lote_cancelado": {
+          "type": "string",
+          "description": "0"
+        },
+        "produto": {
+          "type": "string",
+          "description": "OUTROS POLIFOSFATOS"
+        },
+        "NCM": {
+          "type": "string",
+          "description": ""
+        },
+        "codigo_cliente": {
+          "type": "string",
+          "description": "002094"
+        },
+        "comissionaria_cliente": {
+          "type": "string",
+          "description": "000074"
+        },
+        "agente_cliente": {
+          "type": "string",
+          "description": "000154"
+        },
+        "cliente": {
+          "type": "string",
+          "description": "N.N. PRODUTOS TEXTEIS LTDA"
+        },
+        "ce_mercante": {
+          "type": "string",
+          "description": "181805052426823"
+        },
+        "especie": {
+          "type": "string",
+          "description": "BB"
+        },
+        "pais_origem": {
+          "type": "string",
+          "description": "CHINA"
+        },
+        "peso_bruto": {
+          "type": "string",
+          "description": "18144.0000000"
+        },
+        "peso_liquido": {
+          "type": "string",
+          "description": "18000.0000000"
+        },
+        "quantidade": {
+          "type": "string",
+          "description": "720"
+        },
+        "conteiner": {
+          "type": "string",
+          "description": "CZZU3526182"
+        },
+        "modal": {
+          "type": "string",
+          "description": "MARITIMO"
+        },
+        "conhecimento": {
+          "type": "string",
+          "description": "MSCUPX205391"
+        },
+        "data_conhecimento": {
+          "type": "string",
+          "description": "2018-01-29T00:00:00-0200"
+        },
+        "madeira": {
+          "type": "string",
+          "description": "2"
+        },
+        "tipo_documento": {
+          "type": "string",
+          "description": "DTA"
+        },
+        "necessita_vistoria": {
+          "type": "integer",
+          "description": "3"
+        },
+        "vistoriado_por": {
+          "type": "string",
+          "description": "null"
+        },
+        "vistoriado_em": {
+          "type": "string",
+          "description": "null"
+        },
+        "liberado_por": {
+          "type": "string",
+          "description": "null"
+        },
+        "liberado_em": {
+          "type": "string",
+          "description": "null"
+        },
+        "comentario": {
+          "type": "string",
+          "description": "null"
+        },
+        "dent_idsara": {
+          "type": "string",
+          "description": "201830000000001322764NVT999999"
+        },
+        "tipo_conhecimento": {
+          "type": "string",
+          "description": "BL"
+        },
+        "vistoriados_old": {
+          "type": "string",
+          "description": "null"
+        },
+        "liberados_old": {
+          "type": "string",
+          "description": "null"
+        },
+        "vistoriado": {
+          "type": "string",
+          "description": "null"
+        },
+        "liberado": {
+          "type": "string",
+          "description": "null"
+        },
+        "possuiAnexos": {
+          "type": "string",
+          "description": "true"
+        },
+        "arquivos_anexos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mapa_anexo"
+          }
+        }
+      }
+    },
+    "mapa_anexo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "10434"
+        },
+        "nome": {
+          "type": "string",
+          "description": "NN (2).PDF"
+        },
+        "arquivo": {
+          "type": "string",
+          "description": "b538118ac4add0ef4eb3d97828add78caca53a7d.PDF"
+        },
+        "lote": {
+          "type": "string",
+          "description": "201800001587"
+        },
+        "dent_idsara": {
+          "type": "string",
+          "description": "null"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "94"
+        },
+        "created": {
+          "type": "string",
+          "description": "2018-04-06T11:19:48-0300"
+        },
+        "anexo_tipo_id": {
+          "type": "string",
+          "description": "1"
+        },
+        "anexo_tipo": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "1"
+            },
+            "sigla": {
+              "type": "string",
+              "description": "BL"
+            },
+            "nome": {
+              "type": "string",
+              "description": "BL"
+            },
+            "ativo": {
+              "type": "string",
+              "description": "1"
+            }
+          }
+        }
+      }
+    }
+  }
+}

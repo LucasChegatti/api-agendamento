@@ -70,7 +70,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     // carrega configurações de rotas
-    $routes->connect('/foo/bar', ['controller' => 'Foo', 'action' => 'bar', 'isRest' => true]);
+    $routes->connect('/agendamentos/view', ['controller' => 'Agendamentos', 'action' => 'view', 'isRest' => true]);
+    $routes->connect('/agendamentos/getPeriodoDatas', ['controller' => 'Agendamentos', 'action' => 'getPeriodoDatas', 'isRest' => true]);    
+    $routes->connect('/agendamentos/index', ['controller' => 'Agendamentos', 'action' => 'index', 'isRest' => true]);
 
     /**
      * Connect catchall routes for all controllers.
